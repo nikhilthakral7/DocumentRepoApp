@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentRepoAPI", "DocumentRepoAPI\DocumentRepoAPI.csproj", "{60CA9789-7FBA-430D-BCD7-8D52809BE42D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentRepoAPI.Tests", "DocumentRepoAPI.Tests\DocumentRepoAPI.Tests.csproj", "{79F1EF75-C3AF-456F-9E32-36AAEADEC67A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60CA9789-7FBA-430D-BCD7-8D52809BE42D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60CA9789-7FBA-430D-BCD7-8D52809BE42D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60CA9789-7FBA-430D-BCD7-8D52809BE42D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60CA9789-7FBA-430D-BCD7-8D52809BE42D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79F1EF75-C3AF-456F-9E32-36AAEADEC67A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79F1EF75-C3AF-456F-9E32-36AAEADEC67A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79F1EF75-C3AF-456F-9E32-36AAEADEC67A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79F1EF75-C3AF-456F-9E32-36AAEADEC67A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5B038B2F-E8D9-418E-A250-D7380677B743}
+	EndGlobalSection
+EndGlobal
