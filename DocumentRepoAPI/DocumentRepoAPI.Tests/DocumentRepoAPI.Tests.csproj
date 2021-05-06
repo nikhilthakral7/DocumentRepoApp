@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79F1EF75-C3AF-456F-9E32-36AAEADEC67A}</ProjectGuid>
+    <ProjectGuid>{A5950CC8-1FE0-44CB-AA4E-C2AF46928D60}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DocumentRepoAPI.Tests</RootNamespace>
@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DocumentRepoAPI\DocumentRepoAPI.csproj">
-      <Project>{60CA9789-7FBA-430D-BCD7-8D52809BE42D}</Project>
+      <Project>{3D0F4CB3-B9AD-4CEA-86FA-AE17580D5CB1}</Project>
       <Name>DocumentRepoAPI</Name>
     </ProjectReference>
   </ItemGroup>
