@@ -8,5 +8,10 @@ namespace DocumentRepoAPI.Services.Interfaces
 {
     interface IAuthenticationService
     {
+        //login
+        //bool Login(string username, string password)
+
+        //logout
+        //void LogOut(int userId)
     }
 }

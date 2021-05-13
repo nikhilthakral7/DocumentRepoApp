@@ -1,10 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using DocumentRepoAPI.Services.Interfaces;
+using System.Collections.Generic;
 using System.Web.Http;
 
 namespace DocumentRepoAPI.Controllers
 {
-    public class TestController : ApiController
+    public class UserContoller : ApiController
     {
+        private readonly IUserService userObj;
+        public UserContoller(IUserService userObj)
+        {
+            this.userObj = userObj;
+        }
         [HttpGet]
         // GET api/<controller>
         public IEnumerable<string> Get()
@@ -17,7 +23,8 @@ namespace DocumentRepoAPI.Controllers
         // GET api/<controller>/5
         public string Get(int id, int value)
         {
-            return "value";
+            //userObj.CreateUsers();
+            return userObj.DeleteUsers(1).ToString();
         }
 
         [HttpPost]

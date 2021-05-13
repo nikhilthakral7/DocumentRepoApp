@@ -8,5 +8,10 @@ namespace DocumentRepoAPI.Services.Interfaces
 {
     interface IEncryptionService
     {
+        // Encrypt Password
+        //string EncryptPassword(string password)
+
+        //Encrypt File
+        //byte[] EncryptFile(byte[] file)
     }
 }

@@ -8,5 +8,6 @@ namespace DocumentRepoAPI.Services.Interfaces
 {
     interface ILoggingService
     {
+        //We will use SeriLog
     }
 }

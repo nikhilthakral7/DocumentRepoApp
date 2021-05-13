@@ -1,0 +1,6 @@
+F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Providers\bin\Debug\DocumentRepoAPI.Providers.dll
+F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Providers\bin\Debug\DocumentRepoAPI.Providers.pdb
+F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Providers\obj\Debug\DocumentRepoAPI.Providers.csprojAssemblyReference.cache
+F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Providers\obj\Debug\DocumentRepoAPI.Providers.csproj.CoreCompileInputs.cache
+F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Providers\obj\Debug\DocumentRepoAPI.Providers.dll
+F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Providers\obj\Debug\DocumentRepoAPI.Providers.pdb
