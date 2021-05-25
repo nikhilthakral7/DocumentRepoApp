@@ -47,14 +47,3 @@ F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\Flue
 F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\Serilog.xml
 F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\Serilog.Sinks.File.pdb
 F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\Serilog.Sinks.File.xml
-F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\System.Web.Mvc.dll
-F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\System.Web.WebPages.dll
-F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\System.Web.WebPages.Razor.dll
-F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\System.Web.Razor.dll
-F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
-F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\System.Web.WebPages.Deployment.dll
-F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\System.Web.Mvc.xml
-F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\System.Web.WebPages.xml
-F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\System.Web.WebPages.Razor.xml
-F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\System.Web.Razor.xml
-F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\System.Web.WebPages.Deployment.xml

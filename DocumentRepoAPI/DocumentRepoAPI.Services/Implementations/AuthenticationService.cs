@@ -1,9 +1,12 @@
 ﻿using DocumentRepoAPI.Data.Entities;
 using DocumentRepoAPI.Services.Interfaces;
 using System;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 
 namespace DocumentRepoAPI.Services.Implementations
 {
@@ -69,17 +72,28 @@ namespace DocumentRepoAPI.Services.Implementations
             }
         }
 
-        public Users GetUserFromToken(string token)
+        public UserDTO ValidateToken(string token)
         {
-            using (var context = new filerepodbEntities())
+            var conn = WebConfigurationManager.ConnectionStrings["documentrepoconnectionstring"].ToString();
+            //Establishing connection
+            using (var SQLConnection = new SqlConnection(conn))
             {
-                var t = context.UserActiveTokens.FirstOrDefault(x => x.Token == token);
-                if (t != null)
+                using (var sqlcomm = new SqlCommand("dbo.ValidateTokenRole", SQLConnection))
                 {
-                    var u = context.Users.FirstOrDefault(x=>x.UserId == t.UserId);
-                    return u;
+                    sqlcomm.CommandType = System.Data.CommandType.StoredProcedure;
+                    sqlcomm.Parameters.AddWithValue("@token", token);
+
+                    DataSet outputdata = new DataSet();
+                    SqlDataAdapter adapter = new SqlDataAdapter(sqlcomm);
+                    adapter.Fill(outputdata);
+                    return new UserDTO
+                    {
+                        status = Convert.ToBoolean(outputdata.Tables[0].Rows[0][0]),
+                        message = Convert.ToString(outputdata.Tables[0].Rows[0][1]),
+                        userId = Convert.ToInt64(outputdata.Tables[0].Rows[0][2]),
+                        userRole = Convert.ToString(outputdata.Tables[0].Rows[0][3])
+                    };
                 }
-                return null;
             }
         }
 

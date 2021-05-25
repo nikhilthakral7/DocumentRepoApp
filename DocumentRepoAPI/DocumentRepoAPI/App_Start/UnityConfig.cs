@@ -20,6 +20,7 @@ namespace DocumentRepoAPI
             container.RegisterType<IAuthenticationService, AuthenticationService>();
             container.RegisterType<IDocumentService, DocumentService>();
             container.RegisterType<IEncryptionService, EncryptionService>();
+            //container.registers
             
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

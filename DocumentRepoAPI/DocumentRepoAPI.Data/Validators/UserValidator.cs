@@ -24,7 +24,12 @@ namespace DocumentRepoAPI.Data.Validators
                 //RuleFor(x => x.CreditCardNumber).NotNull();
             });
             RuleFor(x => x.LastName);
-            RuleFor(x => x.RecoveryPhoneNum != null ? x.RecoveryPhoneNum : String.Empty);
+            When(x => x.RecoveryPhoneNum != null && x.RecoveryPhoneNum != "", () =>
+            {
+                RuleFor(x => x.RecoveryPhoneNum).MaximumLength(12);
+                RuleFor(x => x.RecoveryPhoneNum).Must(BeAValidPhNum).WithMessage("Invalid phone number format!");
+                //RuleFor(x => x.CreditCardNumber).NotNull();
+            });
             RuleFor(x => x.CreatedBy).NotEmpty();
             RuleFor(x => x.CreateDate);
             RuleFor(x => x.ModifiedBy).NotEmpty();
@@ -32,9 +37,10 @@ namespace DocumentRepoAPI.Data.Validators
         }
 
         //Custom method for ph num validation
-        //private Func<string, bool> BeAValidPhNum(string phnum, out bool res)
-        //{ 
+        private bool BeAValidPhNum(string phnum)
+        {
 
-        //}
+            return true;
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace DocumentRepoAPI.Services.Interfaces
         //genrate Token - Token will be string 
         Task<string> GenerateToken(long UserId);
 
-        Users GetUserFromToken(string token);
+        UserDTO ValidateToken(string token);
 
         //logout
         Task<long> LogOut(long userId);

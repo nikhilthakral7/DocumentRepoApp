@@ -14,10 +14,9 @@ namespace DocumentRepoAPI
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-
             //This will apply this filter to all the actions globally
-            //config.Filters.Add(new MukulAuthorizeFilter());
-            
+            config.Filters.Add((MukulAuthorizeFilter)config.DependencyResolver.GetService(typeof(MukulAuthorizeFilter)));
+
             //config.Routes.MapHttpRoute(
             //    name: "DefaultApi",
             //    routeTemplate: "api/{controller}/{id}",

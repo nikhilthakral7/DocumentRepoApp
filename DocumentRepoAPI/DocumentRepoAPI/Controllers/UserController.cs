@@ -21,8 +21,8 @@ namespace DocumentRepoAPI.Controllers
         }
 
         [Route("")]
-        [MukulAuthorizeFilter(UserRole:1)]
         [HttpGet]
+        [RolesFilter("RegularUser,Admin")]
         public IHttpActionResult Get()
         {
             var res= userObj.GetUsers();
@@ -68,6 +68,17 @@ namespace DocumentRepoAPI.Controllers
         }
         [HttpDelete]
         public async Task<IHttpActionResult> Delete(long id)
+        {
+            var res = await userObj.DeleteUsers(id);
+            if (res != -1)
+                return Ok(res);
+            return NotFound();
+        }
+
+        [Route("/admin/{id}")]
+        [RolesFilter("Admin")]
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeleteByAdmin(long id)
         {
             var res = await userObj.DeleteUsers(id);
             if (res != -1)
