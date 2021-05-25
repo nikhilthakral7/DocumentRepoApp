@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentRepoAPI.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -13,6 +14,9 @@ namespace DocumentRepoAPI
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            //This will apply this filter to all the actions globally
+            //config.Filters.Add(new MukulAuthorizeFilter());
             
             //config.Routes.MapHttpRoute(
             //    name: "DefaultApi",

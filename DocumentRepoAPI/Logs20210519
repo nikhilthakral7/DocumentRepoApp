@@ -1,0 +1,6 @@
+2021-05-19 14:39:30.583 +05:30 [ERR] Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+2021-05-19 14:39:30.613 +05:30 [ERR]    at System.Data.Entity.Internal.InternalContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.DbContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.DbContext.SaveChangesAsync()
+   at DocumentRepoAPI.Services.Implementations.UserService.<CreateUsers>d__2.MoveNext() in F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Services\Implementations\UserService.cs:line 35

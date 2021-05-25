@@ -22,7 +22,7 @@ namespace DocumentRepoAPI.Services.Interfaces
 
         //Delete account - all files related to thata ccount deleted automatically
         // Takes UsersId of Users that needs to be deleted
-        long DeleteUsers(long UsersId);
+        Task<long> DeleteUsers(long UsersId);
 
     }
 }

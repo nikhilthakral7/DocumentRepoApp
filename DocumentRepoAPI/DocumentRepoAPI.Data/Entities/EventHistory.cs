@@ -16,7 +16,7 @@ namespace DocumentRepoAPI.Data.Entities
     {
         public long EventId { get; set; }
         public int EventType { get; set; }
-        public int CreatedBy { get; set; }
+        public long CreatedBy { get; set; }
         public System.DateTime CreateDate { get; set; }
     }
 }

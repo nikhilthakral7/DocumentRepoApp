@@ -11,7 +11,7 @@
           </Key>
           <Property Name="EventId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventType" Type="int" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="EventTypes">
@@ -33,9 +33,9 @@
           <Property Name="ReadAccess" Type="bit" Nullable="false" />
           <Property Name="ModifyAccess" Type="bit" Nullable="false" />
           <Property Name="DeleteAccess" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedBy" Type="bigint" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Folders">
@@ -49,9 +49,9 @@
           <Property Name="ReadAccess" Type="bit" Nullable="false" />
           <Property Name="ModifyAccess" Type="bit" Nullable="false" />
           <Property Name="DeleteAccess" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedBy" Type="bigint" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="SharedFiles">
@@ -62,9 +62,9 @@
           <Property Name="SharedFile" Type="int" Nullable="false" />
           <Property Name="SharedBy" Type="int" Nullable="false" />
           <Property Name="SharedTo" Type="int" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedBy" Type="bigint" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="SharedFolders">
@@ -75,10 +75,20 @@
           <Property Name="SharedFolders" Type="int" Nullable="false" />
           <Property Name="SharedBy" Type="int" Nullable="false" />
           <Property Name="SharedTo" Type="int" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedBy" Type="bigint" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserActiveTokens">
+          <Key>
+            <PropertyRef Name="TokenId" />
+          </Key>
+          <Property Name="TokenId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="Token" Type="varchar(max)" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -92,16 +102,16 @@
           <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="RecoveryPhoneNum" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedBy" Type="bigint" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="UserTypes">
           <Key>
             <PropertyRef Name="UserTypeId" />
           </Key>
-          <Property Name="UserTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserType" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityContainer Name="filerepodbModelStoreContainer">
@@ -111,6 +121,7 @@
           <EntitySet Name="Folders" EntityType="Self.Folders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SharedFiles" EntityType="Self.SharedFiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SharedFolders" EntityType="Self.SharedFolders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserActiveTokens" EntityType="Self.UserActiveTokens" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTypes" EntityType="Self.UserTypes" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -125,7 +136,7 @@
           </Key>
           <Property Name="EventId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EventType" Type="Int32" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="EventTypes">
@@ -147,9 +158,9 @@
           <Property Name="ReadAccess" Type="Boolean" Nullable="false" />
           <Property Name="ModifyAccess" Type="Boolean" Nullable="false" />
           <Property Name="DeleteAccess" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int64" Nullable="false" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="Folders">
@@ -163,9 +174,9 @@
           <Property Name="ReadAccess" Type="Boolean" Nullable="false" />
           <Property Name="ModifyAccess" Type="Boolean" Nullable="false" />
           <Property Name="DeleteAccess" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int64" Nullable="false" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="SharedFiles">
@@ -176,9 +187,9 @@
           <Property Name="SharedFile" Type="Int32" Nullable="false" />
           <Property Name="SharedBy" Type="Int32" Nullable="false" />
           <Property Name="SharedTo" Type="Int32" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int64" Nullable="false" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="SharedFolders">
@@ -189,10 +200,20 @@
           <Property Name="SharedFolders1" Type="Int32" Nullable="false" />
           <Property Name="SharedBy" Type="Int32" Nullable="false" />
           <Property Name="SharedTo" Type="Int32" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int64" Nullable="false" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="UserActiveTokens">
+          <Key>
+            <PropertyRef Name="TokenId" />
+          </Key>
+          <Property Name="TokenId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="7" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -206,25 +227,26 @@
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RecoveryPhoneNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int64" Nullable="false" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="UserTypes">
           <Key>
             <PropertyRef Name="UserTypeId" />
           </Key>
-          <Property Name="UserTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="filerepodbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="filerepodbEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EventHistory" EntityType="Self.EventHistory" />
           <EntitySet Name="EventTypes" EntityType="Self.EventTypes" />
           <EntitySet Name="Files" EntityType="Self.Files" />
           <EntitySet Name="Folders" EntityType="Self.Folders" />
           <EntitySet Name="SharedFiles" EntityType="Self.SharedFiles" />
           <EntitySet Name="SharedFolders" EntityType="Self.SharedFolders" />
+          <EntitySet Name="UserActiveTokens" EntityType="Self.UserActiveTokens" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="UserTypes" EntityType="Self.UserTypes" />
         </EntityContainer>
@@ -233,7 +255,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="filerepodbModelStoreContainer" CdmEntityContainer="filerepodbEntities">
+        <EntityContainerMapping StorageEntityContainer="filerepodbModelStoreContainer" CdmEntityContainer="filerepodbEntities1">
           <EntitySetMapping Name="EventHistory">
             <EntityTypeMapping TypeName="filerepodbModel.EventHistory">
               <MappingFragment StoreEntitySet="EventHistory">
@@ -312,6 +334,17 @@
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserActiveTokens">
+            <EntityTypeMapping TypeName="filerepodbModel.UserActiveTokens">
+              <MappingFragment StoreEntitySet="UserActiveTokens">
+                <ScalarProperty Name="TokenId" ColumnName="TokenId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

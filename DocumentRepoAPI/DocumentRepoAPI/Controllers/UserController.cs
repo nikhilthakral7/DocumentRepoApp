@@ -1,15 +1,16 @@
 ﻿using DocumentRepoAPI.Data.Entities;
+using DocumentRepoAPI.Data.Validators;
 using DocumentRepoAPI.Services.Interfaces;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Results;
+using System.Linq;
+using System;
+using DocumentRepoAPI.Filters;
 
 namespace DocumentRepoAPI.Controllers
 {
-    [Route("api/[Controller]")]
+    //[Route("api/[Controller]")]
+    [RoutePrefix("api/user")]
     public class UserController : ApiController
     {
         private readonly IUserService userObj;
@@ -19,24 +20,19 @@ namespace DocumentRepoAPI.Controllers
             this.userObj = userObj;
         }
 
+        [Route("")]
+        [MukulAuthorizeFilter(UserRole:1)]
         [HttpGet]
         public IHttpActionResult Get()
         {
             var res= userObj.GetUsers();
-            if (res == null)
+            if (res != null)
                 return Ok(res);
             return NotFound();
         }
 
         [Route("{id}")]
         [HttpGet]
-        //public HttpResponseMessage Get(long id)
-        //{
-        //    var res = userObj.GetUsers(id: id);
-        //    //var output = new JsonResult(userObj.GetUsers(id: id));
-
-        //    return Request.CreateResponse(res==null?HttpStatusCode.NotFound:HttpStatusCode.OK, res) ;
-        //}
         public IHttpActionResult Get(long id)
         {
             var res = userObj.GetUsers(id: id);
@@ -46,21 +42,37 @@ namespace DocumentRepoAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<long> Post(Users user)
+        public async Task<IHttpActionResult> Post(Users user)
         {
-            return await userObj.CreateUsers(user);
+            //if (!ModelState.IsValid)
+            //    return BadRequest("Invalid Data Entered!");
+            var Validator = new UserValidator();
+            var output = Validator.Validate(user);
+            if (!output.IsValid)
+                return BadRequest(String.Join(", ", output.Errors.Select(x=>x.ErrorMessage)));
+            var res =  await userObj.CreateUsers(user);
+            return Ok(res);
         }
-
+        [Route("api/user/{id}")]
         [HttpPut]
-        public async Task<long> Put(long id, Users user)
+        public async Task<IHttpActionResult> Put(long id, Users user)
         {
-            return await userObj.UpdateUsers(id, user);
+            var Validator = new UserValidator();
+            var output = Validator.Validate(user);
+            if (!output.IsValid)
+                return BadRequest(String.Join(", ", output.Errors.Select(x => x.ErrorMessage)));
+            var res = await userObj.UpdateUsers(id, user);
+            if(res!=-1)
+                return Ok();
+            return NotFound();
         }
-
         [HttpDelete]
-        public long Delete(long id)
+        public async Task<IHttpActionResult> Delete(long id)
         {
-            return userObj.DeleteUsers(id);
+            var res = await userObj.DeleteUsers(id);
+            if (res != -1)
+                return Ok(res);
+            return NotFound();
         }
     }
 }

@@ -9,6 +9,9 @@ namespace DocumentRepoAPI.Tests
         [TestMethod]
         public void TestMethod1()
         {
+            //Arrange - get data for your test case
+            //Act - Execute function based on data arranged and get output
+            //Assert - Check desired output
         }
     }
 }

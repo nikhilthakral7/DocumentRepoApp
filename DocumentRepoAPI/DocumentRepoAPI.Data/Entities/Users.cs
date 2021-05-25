@@ -22,9 +22,9 @@ namespace DocumentRepoAPI.Data.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string RecoveryPhoneNum { get; set; }
-        public int CreatedBy { get; set; }
+        public long CreatedBy { get; set; }
         public System.DateTime CreateDate { get; set; }
-        public int ModifiedBy { get; set; }
+        public long ModifiedBy { get; set; }
         public System.DateTime ModifiedDate { get; set; }
     }
 }

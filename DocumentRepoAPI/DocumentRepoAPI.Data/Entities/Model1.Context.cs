@@ -31,6 +31,7 @@ namespace DocumentRepoAPI.Data.Entities
         public virtual DbSet<Folders> Folders { get; set; }
         public virtual DbSet<SharedFiles> SharedFiles { get; set; }
         public virtual DbSet<SharedFolders> SharedFolders { get; set; }
+        public virtual DbSet<UserActiveTokens> UserActiveTokens { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserTypes> UserTypes { get; set; }
     }

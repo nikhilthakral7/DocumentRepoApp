@@ -14,7 +14,7 @@ namespace DocumentRepoAPI.Data.Entities
     
     public partial class UserTypes
     {
-        public int UserTypeId { get; set; }
+        public long UserTypeId { get; set; }
         public string UserType { get; set; }
     }
 }

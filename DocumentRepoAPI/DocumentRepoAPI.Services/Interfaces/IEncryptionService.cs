@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DocumentRepoAPI.Services.Interfaces
 {
-    interface IEncryptionService
+    public interface IEncryptionService
     {
         // Encrypt Password
-        //string EncryptPassword(string password)
+        string EncryptPassword(string password);
 
         //Encrypt File
-        //byte[] EncryptFile(byte[] file)
+        byte[] EncryptFile(byte[] file);
     }
 }

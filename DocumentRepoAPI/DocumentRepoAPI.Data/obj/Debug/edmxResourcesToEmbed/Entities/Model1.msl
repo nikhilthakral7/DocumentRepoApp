@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="filerepodbModelStoreContainer" CdmEntityContainer="filerepodbEntities">
+  <EntityContainerMapping StorageEntityContainer="filerepodbModelStoreContainer" CdmEntityContainer="filerepodbEntities1">
     <EntitySetMapping Name="EventHistory">
       <EntityTypeMapping TypeName="filerepodbModel.EventHistory">
         <MappingFragment StoreEntitySet="EventHistory">
@@ -79,6 +79,17 @@
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserActiveTokens">
+      <EntityTypeMapping TypeName="filerepodbModel.UserActiveTokens">
+        <MappingFragment StoreEntitySet="UserActiveTokens">
+          <ScalarProperty Name="TokenId" ColumnName="TokenId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
