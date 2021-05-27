@@ -12,54 +12,60 @@ namespace DocumentRepoAPI.Services.Interfaces
     {
         //Add Files
         // Takes file as input stores file at server and return path where file is stored on serverS
-        string AddFile(long userId, HttpPostedFile file);
+        string AddFile(long userId, string folderName, HttpPostedFile file);
 
         //Delete files
         // Takes file Id as input deletes that file and return true/false based on success or failure
-        bool DeleteFile(int userId, int fileId);
+        Task<bool> DeleteFile(long userId, long fileId);
 
         //Modify files
         // Takes fileId and updated file as input and updates that file returns id of updated file
-        int UpdateFile(int userId, int fileId, byte[] updatedFile);
+        long UpdateFile(long userId, long fileId, byte[] updatedFile);
 
         //Make file public/private/access to particular users only
         // Takes fileId, array of userId to whoom access need to be given and accessType...returns true/false based on the sucess/failure
-        bool ModifyFileAccess(int userId, int fileId, int[] userIds, int accessType);
+        bool ModifyFileAccess(long userId, long fileId, long[] userIds, long accessType);
 
 
         //Revoke particular user only
         // Takes fileId, userId from whoom access need to be revoked and accessType...returns true/false based on the sucess/failure
-        bool ModifyFileAccess(int userId, int fileId, int accessType);
+        bool ModifyFileAccess(long userId, long fileId, long accessType);
 
 
 
 
         //Add Directories
         // Takes folder name as argument and returns the id of the folder added
-        Task<long> AddDirectory(Folders newFolder);
+        Task<long> AddDirectory(long userId, Folders newFolder);
 
         //Delete Directories
         // Takes Folder Id as input deletes that Folder and return true/false based on success or failure
-        bool DeleteDirectory(int userId, int folderId);
+        bool DeleteDirectory(long userId, string folderPath);
 
         //Modify Directories
         // Takes fileId and updated folder name
-        int UpdateDirectory(int userId, int folderId, string updatedFolderName);
+        long UpdateDirectory(long userId, long folderId, string updatedFolderName);
 
         //Make file public/private/access to particular users only
         // Takes folderId, array of userId to whoom access need to be given and accessType...returns true/false based on the sucess/failure
-        bool ModifyDirectoryAccess(int userId, int folderId, int[] userIds, int accessType);
+        bool ModifyDirectoryAccess(long userId, long folderId, long[] userIds, long accessType);
 
         //Revoke particular user only
         // Takes folderId, userId from whoom access need to be revoked and accessType...returns true/false based on the sucess/failure
-        bool ModifyDirectoryAccess(int userId, int folderId, int accessType);
+        bool ModifyDirectoryAccess(long userId, long folderId, long accessType);
 
         //Move to trash - empty trash after 30 days
         //Using Windows Services with Logic or call a API of our application in Window Service
 
         //Grant and Revoke permissions to and from the users and documents
-        void GrantPermission(int byUserId, int toUserId, int permissionType, int fileId, int folderId);
-        void RevokePermission(int byUserId, int toUserId, int permissionType, int fileId, int folderId);
+
+        Task GrantFilePermission(SharedFiles shFile);
+
+        void RevokeFilePermission(SharedFiles shFile);
+
+        Task GrantFolderPermission(SharedFolders shFolder);
+
+        void RevokeFolderPermission(SharedFolders shFolder);
 
     }
 }

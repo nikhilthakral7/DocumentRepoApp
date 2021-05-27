@@ -15,9 +15,12 @@ namespace DocumentRepoAPI.Data.Entities
     public partial class SharedFiles
     {
         public long SharedFilesId { get; set; }
-        public int SharedFile { get; set; }
-        public int SharedBy { get; set; }
-        public int SharedTo { get; set; }
+        public long SharedFile { get; set; }
+        public long SharedBy { get; set; }
+        public long SharedTo { get; set; }
+        public bool ReadAccess { get; set; }
+        public bool ModifyAccess { get; set; }
+        public bool DeleteAccess { get; set; }
         public long CreatedBy { get; set; }
         public System.DateTime CreateDate { get; set; }
         public long ModifiedBy { get; set; }

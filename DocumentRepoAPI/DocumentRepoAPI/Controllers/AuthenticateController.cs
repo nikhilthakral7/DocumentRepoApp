@@ -11,7 +11,7 @@ using DocumentRepoAPI.Data.Validators;
 
 namespace DocumentRepoAPI.Controllers
 {
-    //[Route("api/auth")]
+    [RoutePrefix("api/auth")]
     public class AuthenticateController : ApiController
     {
         private readonly IAuthenticationService authObj;
@@ -20,7 +20,10 @@ namespace DocumentRepoAPI.Controllers
         {
             this.authObj = authObj;
         }
-        [Route("api/auth")]
+
+        //Attribute to bypass authorization
+        [Route("")]
+        [OverrideAuthorization]
         [HttpPost]
         public async Task<IHttpActionResult> Login(LoginDTO user)
         {

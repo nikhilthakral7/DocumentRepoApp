@@ -21,14 +21,14 @@ namespace DocumentRepoAPI.Controllers
 
         [Route("{userId}")]
         [HttpPost]
-        public async Task<IHttpActionResult> PostFile(long userId)
+        public async Task<IHttpActionResult> PostFile(long userId, string folderName)
         {
             //req
             var req = HttpContext.Current.Request;
             foreach (string file in req.Files)
             {
                 //file.SaveAs(path);
-                docObj.AddFile(userId, req.Files[file]);
+                docObj.AddFile(userId, folderName, req.Files[file]);
                 
             }
             return Ok();

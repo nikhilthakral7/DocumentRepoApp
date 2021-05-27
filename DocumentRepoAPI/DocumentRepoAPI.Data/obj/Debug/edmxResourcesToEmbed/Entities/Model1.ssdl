@@ -54,9 +54,12 @@
       <PropertyRef Name="SharedFilesId" />
     </Key>
     <Property Name="SharedFilesId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SharedFile" Type="int" Nullable="false" />
-    <Property Name="SharedBy" Type="int" Nullable="false" />
-    <Property Name="SharedTo" Type="int" Nullable="false" />
+    <Property Name="SharedFile" Type="bigint" Nullable="false" />
+    <Property Name="SharedBy" Type="bigint" Nullable="false" />
+    <Property Name="SharedTo" Type="bigint" Nullable="false" />
+    <Property Name="ReadAccess" Type="bit" Nullable="false" />
+    <Property Name="ModifyAccess" Type="bit" Nullable="false" />
+    <Property Name="DeleteAccess" Type="bit" Nullable="false" />
     <Property Name="CreatedBy" Type="bigint" Nullable="false" />
     <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="ModifiedBy" Type="bigint" Nullable="false" />
@@ -67,9 +70,12 @@
       <PropertyRef Name="SharedFoldersId" />
     </Key>
     <Property Name="SharedFoldersId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SharedFolders" Type="int" Nullable="false" />
-    <Property Name="SharedBy" Type="int" Nullable="false" />
-    <Property Name="SharedTo" Type="int" Nullable="false" />
+    <Property Name="SharedFolder" Type="bigint" Nullable="false" />
+    <Property Name="SharedBy" Type="bigint" Nullable="false" />
+    <Property Name="SharedTo" Type="bigint" Nullable="false" />
+    <Property Name="ReadAccess" Type="bit" Nullable="false" />
+    <Property Name="ModifyAccess" Type="bit" Nullable="false" />
+    <Property Name="DeleteAccess" Type="bit" Nullable="false" />
     <Property Name="CreatedBy" Type="bigint" Nullable="false" />
     <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="ModifiedBy" Type="bigint" Nullable="false" />
@@ -109,6 +115,9 @@
     <Property Name="UserTypeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserType" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
+  <Function Name="ValidateTokenRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="token" Type="varchar" Mode="In" />
+  </Function>
   <EntityContainer Name="filerepodbModelStoreContainer">
     <EntitySet Name="EventHistory" EntityType="Self.EventHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EventTypes" EntityType="Self.EventTypes" Schema="dbo" store:Type="Tables" />

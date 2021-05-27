@@ -59,9 +59,12 @@
             <PropertyRef Name="SharedFilesId" />
           </Key>
           <Property Name="SharedFilesId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SharedFile" Type="int" Nullable="false" />
-          <Property Name="SharedBy" Type="int" Nullable="false" />
-          <Property Name="SharedTo" Type="int" Nullable="false" />
+          <Property Name="SharedFile" Type="bigint" Nullable="false" />
+          <Property Name="SharedBy" Type="bigint" Nullable="false" />
+          <Property Name="SharedTo" Type="bigint" Nullable="false" />
+          <Property Name="ReadAccess" Type="bit" Nullable="false" />
+          <Property Name="ModifyAccess" Type="bit" Nullable="false" />
+          <Property Name="DeleteAccess" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="bigint" Nullable="false" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ModifiedBy" Type="bigint" Nullable="false" />
@@ -72,9 +75,12 @@
             <PropertyRef Name="SharedFoldersId" />
           </Key>
           <Property Name="SharedFoldersId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SharedFolders" Type="int" Nullable="false" />
-          <Property Name="SharedBy" Type="int" Nullable="false" />
-          <Property Name="SharedTo" Type="int" Nullable="false" />
+          <Property Name="SharedFolder" Type="bigint" Nullable="false" />
+          <Property Name="SharedBy" Type="bigint" Nullable="false" />
+          <Property Name="SharedTo" Type="bigint" Nullable="false" />
+          <Property Name="ReadAccess" Type="bit" Nullable="false" />
+          <Property Name="ModifyAccess" Type="bit" Nullable="false" />
+          <Property Name="DeleteAccess" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="bigint" Nullable="false" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ModifiedBy" Type="bigint" Nullable="false" />
@@ -114,6 +120,9 @@
           <Property Name="UserTypeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserType" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <Function Name="ValidateTokenRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="token" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="filerepodbModelStoreContainer">
           <EntitySet Name="EventHistory" EntityType="Self.EventHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventTypes" EntityType="Self.EventTypes" Schema="dbo" store:Type="Tables" />
@@ -184,9 +193,12 @@
             <PropertyRef Name="SharedFilesId" />
           </Key>
           <Property Name="SharedFilesId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SharedFile" Type="Int32" Nullable="false" />
-          <Property Name="SharedBy" Type="Int32" Nullable="false" />
-          <Property Name="SharedTo" Type="Int32" Nullable="false" />
+          <Property Name="SharedFile" Type="Int64" Nullable="false" />
+          <Property Name="SharedBy" Type="Int64" Nullable="false" />
+          <Property Name="SharedTo" Type="Int64" Nullable="false" />
+          <Property Name="ReadAccess" Type="Boolean" Nullable="false" />
+          <Property Name="ModifyAccess" Type="Boolean" Nullable="false" />
+          <Property Name="DeleteAccess" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int64" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="ModifiedBy" Type="Int64" Nullable="false" />
@@ -197,9 +209,12 @@
             <PropertyRef Name="SharedFoldersId" />
           </Key>
           <Property Name="SharedFoldersId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SharedFolders1" Type="Int32" Nullable="false" />
-          <Property Name="SharedBy" Type="Int32" Nullable="false" />
-          <Property Name="SharedTo" Type="Int32" Nullable="false" />
+          <Property Name="SharedFolder" Type="Int64" Nullable="false" />
+          <Property Name="SharedBy" Type="Int64" Nullable="false" />
+          <Property Name="SharedTo" Type="Int64" Nullable="false" />
+          <Property Name="ReadAccess" Type="Boolean" Nullable="false" />
+          <Property Name="ModifyAccess" Type="Boolean" Nullable="false" />
+          <Property Name="DeleteAccess" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int64" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="ModifiedBy" Type="Int64" Nullable="false" />
@@ -249,7 +264,16 @@
           <EntitySet Name="UserActiveTokens" EntityType="Self.UserActiveTokens" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="UserTypes" EntityType="Self.UserTypes" />
+          <FunctionImport Name="ValidateTokenRole" ReturnType="Collection(filerepodbModel.ValidateTokenRole_Result)">
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="ValidateTokenRole_Result">
+          <Property Type="Int32" Name="status" Nullable="false" />
+          <Property Type="String" Name="message" Nullable="false" MaxLength="11" />
+          <Property Type="Int64" Name="UserID" Nullable="true" />
+          <Property Type="String" Name="UserType" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -316,6 +340,9 @@
                 <ScalarProperty Name="SharedFile" ColumnName="SharedFile" />
                 <ScalarProperty Name="SharedBy" ColumnName="SharedBy" />
                 <ScalarProperty Name="SharedTo" ColumnName="SharedTo" />
+                <ScalarProperty Name="ReadAccess" ColumnName="ReadAccess" />
+                <ScalarProperty Name="ModifyAccess" ColumnName="ModifyAccess" />
+                <ScalarProperty Name="DeleteAccess" ColumnName="DeleteAccess" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
@@ -327,9 +354,12 @@
             <EntityTypeMapping TypeName="filerepodbModel.SharedFolders">
               <MappingFragment StoreEntitySet="SharedFolders">
                 <ScalarProperty Name="SharedFoldersId" ColumnName="SharedFoldersId" />
-                <ScalarProperty Name="SharedFolders1" ColumnName="SharedFolders" />
+                <ScalarProperty Name="SharedFolder" ColumnName="SharedFolder" />
                 <ScalarProperty Name="SharedBy" ColumnName="SharedBy" />
                 <ScalarProperty Name="SharedTo" ColumnName="SharedTo" />
+                <ScalarProperty Name="ReadAccess" ColumnName="ReadAccess" />
+                <ScalarProperty Name="ModifyAccess" ColumnName="ModifyAccess" />
+                <ScalarProperty Name="DeleteAccess" ColumnName="DeleteAccess" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
@@ -374,6 +404,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ValidateTokenRole" FunctionName="filerepodbModel.Store.ValidateTokenRole">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="filerepodbModel.ValidateTokenRole_Result">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

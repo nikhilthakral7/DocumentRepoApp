@@ -12,6 +12,8 @@ namespace DocumentRepoAPI.Data.Entities
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class filerepodbEntities : DbContext
     {
@@ -34,5 +36,14 @@ namespace DocumentRepoAPI.Data.Entities
         public virtual DbSet<UserActiveTokens> UserActiveTokens { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserTypes> UserTypes { get; set; }
+    
+        public virtual ObjectResult<ValidateTokenRole_Result> ValidateTokenRole(string token)
+        {
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidateTokenRole_Result>("ValidateTokenRole", tokenParameter);
+        }
     }
 }

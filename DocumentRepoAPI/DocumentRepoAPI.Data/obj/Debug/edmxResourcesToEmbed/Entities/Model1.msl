@@ -61,6 +61,9 @@
           <ScalarProperty Name="SharedFile" ColumnName="SharedFile" />
           <ScalarProperty Name="SharedBy" ColumnName="SharedBy" />
           <ScalarProperty Name="SharedTo" ColumnName="SharedTo" />
+          <ScalarProperty Name="ReadAccess" ColumnName="ReadAccess" />
+          <ScalarProperty Name="ModifyAccess" ColumnName="ModifyAccess" />
+          <ScalarProperty Name="DeleteAccess" ColumnName="DeleteAccess" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
@@ -72,9 +75,12 @@
       <EntityTypeMapping TypeName="filerepodbModel.SharedFolders">
         <MappingFragment StoreEntitySet="SharedFolders">
           <ScalarProperty Name="SharedFoldersId" ColumnName="SharedFoldersId" />
-          <ScalarProperty Name="SharedFolders1" ColumnName="SharedFolders" />
+          <ScalarProperty Name="SharedFolder" ColumnName="SharedFolder" />
           <ScalarProperty Name="SharedBy" ColumnName="SharedBy" />
           <ScalarProperty Name="SharedTo" ColumnName="SharedTo" />
+          <ScalarProperty Name="ReadAccess" ColumnName="ReadAccess" />
+          <ScalarProperty Name="ModifyAccess" ColumnName="ModifyAccess" />
+          <ScalarProperty Name="DeleteAccess" ColumnName="DeleteAccess" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
@@ -119,5 +125,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ValidateTokenRole" FunctionName="filerepodbModel.Store.ValidateTokenRole">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="filerepodbModel.ValidateTokenRole_Result">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

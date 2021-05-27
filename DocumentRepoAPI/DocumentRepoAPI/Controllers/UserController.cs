@@ -75,7 +75,7 @@ namespace DocumentRepoAPI.Controllers
             return NotFound();
         }
 
-        [Route("/admin/{id}")]
+        [Route("admin/{id}")]
         [RolesFilter("Admin")]
         [HttpDelete]
         public async Task<IHttpActionResult> DeleteByAdmin(long id)
