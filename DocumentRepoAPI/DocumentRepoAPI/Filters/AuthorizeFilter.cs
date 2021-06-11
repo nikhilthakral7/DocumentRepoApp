@@ -1,5 +1,7 @@
 ﻿using DocumentRepoAPI.Services.Implementations;
 using DocumentRepoAPI.Services.Interfaces;
+using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
@@ -30,21 +32,33 @@ namespace DocumentRepoAPI.Filters
             //get token and check from db, and is active get user id  from there and the give access based on that 
 
             var req = actionContext.Request.Headers.Authorization;
-            var token = req.ToString().Split()[1];
-
-            var output = authObj.ValidateToken(token);
-            if (output.status)
+            if(req!=null)
             {
-                //Allow
-                actionContext.Request.Headers.Add("userId", output.userId.ToString());
-                actionContext.Request.Headers.Add("userType", output.userRole);
+                var token = req.ToString().Split()[1];
+
+                var output = authObj.ValidateToken(token);
+                if (output.status)
+                {
+                    //Allow
+                    actionContext.Request.Headers.Add("userId", output.userId.ToString());
+                    actionContext.Request.Headers.Add("userType", output.userRole);
+                }
+                else
+                {
+                    //Not Allow
+                    var msg = new HttpResponseMessage();
+                    msg.StatusCode = System.Net.HttpStatusCode.Unauthorized;
+                    msg.Content = new StringContent(JsonConvert.SerializeObject(new { msg = output.message }));//DONE - make it json
+                    //Setting response will return back, instead of going forward to controller
+                    actionContext.Response = msg;
+                }
             }
             else
             {
                 //Not Allow
                 var msg = new HttpResponseMessage();
                 msg.StatusCode = System.Net.HttpStatusCode.Unauthorized;
-                msg.Content = new StringContent(output.message);
+                msg.Content = new StringContent(JsonConvert.SerializeObject(new { msg = "No token found" }));//DONE - make it json
                 //Setting response will return back, instead of going forward to controller
                 actionContext.Response = msg;
             }

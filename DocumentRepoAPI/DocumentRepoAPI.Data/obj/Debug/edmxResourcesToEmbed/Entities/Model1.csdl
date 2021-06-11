@@ -115,7 +115,7 @@
     <Property Name="UserTypeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UserType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
-  <EntityContainer Name="filerepodbEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="filerepodbEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="EventHistory" EntityType="Self.EventHistory" />
     <EntitySet Name="EventTypes" EntityType="Self.EventTypes" />
     <EntitySet Name="Files" EntityType="Self.Files" />
@@ -125,10 +125,133 @@
     <EntitySet Name="UserActiveTokens" EntityType="Self.UserActiveTokens" />
     <EntitySet Name="Users" EntityType="Self.Users" />
     <EntitySet Name="UserTypes" EntityType="Self.UserTypes" />
+    <FunctionImport Name="SP_GetActiveUsers" ReturnType="Collection(filerepodbModel.SP_GetActiveUsers_Result)" />
+    <FunctionImport Name="SP_GetAllfileschangesOnDate" ReturnType="Collection(filerepodbModel.SP_GetAllfileschangesOnDate_Result)">
+      <Parameter Name="date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GetAllfolderchangesOnDate" ReturnType="Collection(filerepodbModel.SP_GetAllfolderchangesOnDate_Result)">
+      <Parameter Name="date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GetAllFoldersFilesByUser" ReturnType="Collection(filerepodbModel.SP_GetAllFoldersFilesByUser_Result)">
+      <Parameter Name="userId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GetFilesWithReadModify" ReturnType="Collection(filerepodbModel.SP_GetFilesWithReadModify_Result)">
+      <Parameter Name="userId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GetFilesWithReadOrModify" ReturnType="Collection(filerepodbModel.SP_GetFilesWithReadOrModify_Result)">
+      <Parameter Name="userId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GetModifiedFoolders" ReturnType="Collection(filerepodbModel.SP_GetModifiedFoolders_Result)" />
+    <FunctionImport Name="SP_GetSharedFilesDTO" ReturnType="Collection(filerepodbModel.SP_GetSharedFilesDTO_Result)" />
+    <FunctionImport Name="SP_GetSharedFileUserCount" ReturnType="Collection(filerepodbModel.SP_GetSharedFileUserCount_Result)">
+      <Parameter Name="userId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GetTotalFilesByUser" ReturnType="Collection(filerepodbModel.SP_GetTotalFilesByUser_Result)" />
     <FunctionImport Name="ValidateTokenRole" ReturnType="Collection(filerepodbModel.ValidateTokenRole_Result)">
       <Parameter Name="token" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="SP_GetActiveUsers_Result">
+    <Property Type="Int64" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="EmailId" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="PasswordHash" Nullable="false" MaxLength="512" />
+    <Property Type="Int32" Name="UserTypeId" Nullable="false" />
+    <Property Type="Boolean" Name="UserActive" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="RecoveryPhoneNum" Nullable="false" MaxLength="50" />
+    <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="Int64" Name="ModifiedBy" Nullable="false" />
+    <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_GetAllfileschangesOnDate_Result">
+    <Property Type="Int64" Name="FileId" Nullable="false" />
+    <Property Type="Int64" Name="FolderId" Nullable="true" />
+    <Property Type="String" Name="FileName" Nullable="false" />
+    <Property Type="String" Name="FileUrl" Nullable="false" />
+    <Property Type="String" Name="FileType" Nullable="false" />
+    <Property Type="Boolean" Name="ReadAccess" Nullable="false" />
+    <Property Type="Boolean" Name="ModifyAccess" Nullable="false" />
+    <Property Type="Boolean" Name="DeleteAccess" Nullable="false" />
+    <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="Int64" Name="ModifiedBy" Nullable="false" />
+    <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_GetAllfolderchangesOnDate_Result">
+    <Property Type="DateTime" Name="org_date" Nullable="true" />
+    <Property Type="DateTime" Name="param_date" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_GetAllFoldersFilesByUser_Result">
+    <Property Type="Int64" Name="Id" Nullable="false" />
+    <Property Type="Int64" Name="ContainingFolderId" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="String" Name="Url" Nullable="false" />
+    <Property Type="String" Name="Type" Nullable="false" />
+    <Property Type="Boolean" Name="ReadAccess" Nullable="false" />
+    <Property Type="Boolean" Name="ModifyAccess" Nullable="false" />
+    <Property Type="Boolean" Name="DeleteAccess" Nullable="false" />
+    <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="Int64" Name="ModifiedBy" Nullable="false" />
+    <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_GetFilesWithReadModify_Result">
+    <Property Type="Int64" Name="SharedFilesId" Nullable="false" />
+    <Property Type="Int64" Name="SharedFile" Nullable="false" />
+    <Property Type="Int64" Name="SharedBy" Nullable="false" />
+    <Property Type="Int64" Name="SharedTo" Nullable="false" />
+    <Property Type="Boolean" Name="ReadAccess" Nullable="false" />
+    <Property Type="Boolean" Name="ModifyAccess" Nullable="false" />
+    <Property Type="Boolean" Name="DeleteAccess" Nullable="false" />
+    <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="Int64" Name="ModifiedBy" Nullable="false" />
+    <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_GetFilesWithReadOrModify_Result">
+    <Property Type="Int64" Name="SharedFilesId" Nullable="false" />
+    <Property Type="Int64" Name="SharedFile" Nullable="false" />
+    <Property Type="Int64" Name="SharedBy" Nullable="false" />
+    <Property Type="Int64" Name="SharedTo" Nullable="false" />
+    <Property Type="Boolean" Name="ReadAccess" Nullable="false" />
+    <Property Type="Boolean" Name="ModifyAccess" Nullable="false" />
+    <Property Type="Boolean" Name="DeleteAccess" Nullable="false" />
+    <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="Int64" Name="ModifiedBy" Nullable="false" />
+    <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_GetModifiedFoolders_Result">
+    <Property Type="Int64" Name="ParentId" Nullable="true" />
+    <Property Type="Int64" Name="FolderId" Nullable="false" />
+    <Property Type="String" Name="FolderName" Nullable="false" />
+    <Property Type="String" Name="FolderUrl" Nullable="false" />
+    <Property Type="Boolean" Name="ReadAccess" Nullable="false" />
+    <Property Type="Boolean" Name="ModifyAccess" Nullable="false" />
+    <Property Type="Boolean" Name="DeleteAccess" Nullable="false" />
+    <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="Int64" Name="ModifiedBy" Nullable="false" />
+    <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_GetSharedFilesDTO_Result">
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="101" />
+    <Property Type="Int64" Name="SharedFile" Nullable="false" />
+    <Property Type="String" Name="ReadPermission" Nullable="false" MaxLength="3" />
+    <Property Type="String" Name="DeletePermission" Nullable="false" MaxLength="3" />
+    <Property Type="String" Name="ModifyPermission" Nullable="false" MaxLength="3" />
+  </ComplexType>
+  <ComplexType Name="SP_GetSharedFileUserCount_Result">
+    <Property Type="Int64" Name="SharedBy" Nullable="false" />
+    <Property Type="Int32" Name="SharedUserCount" Nullable="true" />
+    <Property Type="Int32" Name="SharefFileCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_GetTotalFilesByUser_Result">
+    <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+    <Property Type="Int32" Name="TotalFiles" Nullable="true" />
+  </ComplexType>
   <ComplexType Name="ValidateTokenRole_Result">
     <Property Type="Int32" Name="status" Nullable="false" />
     <Property Type="String" Name="message" Nullable="false" MaxLength="11" />

@@ -1,0 +1,25 @@
+Attribute:
+ActionName Attribute = Change name of the Action without changing the action name
+ActionVerb/AcceptVerb = [HttpGet], etc
+NonAction = Make the action inaccesible
+
+Action Result:
+
+
+PartialView:
+Partial view is always created in the shared folder
+Partial view is always inside tha main view
+@HTML.Partial("_PartialViewName")
+
+To return PartialView from controllerm return PartialView("_PartialLayoutName"); with return type of the action as PartialViewResult
+
+**We can not we can use _Layout in partial view
+
+
+Session - something like sessionstorage in js
+We can set session in controlle rand use in View
+Session is a key value pair
+Session is used for state management
+
+
+

@@ -1,0 +1,40 @@
+2021-05-28 15:48:30.388 +05:30 [ERR] The directory name is invalid.
+
+2021-05-28 15:48:30.442 +05:30 [ERR]    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound, WIN32_FIND_DATA& data)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at System.IO.Directory.Delete(String path)
+   at DocumentRepoAPI.Services.Implementations.DocumentService.<DeleteFile>d__7.MoveNext() in F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Services\Implementations\DocumentService.cs:line 161
+2021-05-28 15:57:34.103 +05:30 [ERR] Could not find a part of the path 'C:\Program Files (x86)\IIS Express\SampleFile'.
+2021-05-28 15:57:34.144 +05:30 [ERR]    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at System.IO.Directory.Delete(String path)
+   at DocumentRepoAPI.Services.Implementations.DocumentService.<DeleteFile>d__7.MoveNext() in F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Services\Implementations\DocumentService.cs:line 163
+2021-05-28 16:27:12.764 +05:30 [ERR] Could not find a part of the path 'C:\Program Files (x86)\IIS Express\SampleFile'.
+2021-05-28 16:27:12.802 +05:30 [ERR]    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at System.IO.Directory.Delete(String path)
+   at DocumentRepoAPI.Services.Implementations.DocumentService.<DeleteFile>d__7.MoveNext() in F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Services\Implementations\DocumentService.cs:line 163
+2021-05-28 16:43:01.127 +05:30 [INF] User created successfully!
+2021-05-28 18:09:49.820 +05:30 [INF] 1 granted Read: True, Delete: False, Modify: True permission to 2 for 1 file
+2021-05-28 19:23:14.330 +05:30 [INF] 1 changed Read: True, Delete: False, Modify: False permission to 2 for 1 file
+2021-05-28 19:23:45.985 +05:30 [INF] 1 changed Read: True, Delete: False, Modify: False permission to 2 for 1 file
+2021-05-28 19:24:38.907 +05:30 [INF] 1 granted Read: True, Delete: False, Modify: True permission to 2 for 1 file
+2021-05-28 19:43:17.049 +05:30 [INF] MV_FOLDER folder is created at F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\MV_FOLDER\ by 1
+2021-05-28 19:46:19.746 +05:30 [INF] MV_FOLDER folder is created at F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\$1\MV_FOLDER by 1
+2021-05-28 19:48:05.059 +05:30 [INF] MV_FOLDER folder is created at F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV_FOLDER by 1
+2021-05-28 19:49:41.760 +05:30 [INF] F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV_FOLDER is deleted by 1
+2021-05-28 19:55:35.548 +05:30 [INF] F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV_FOLDER is deleted by 1
+2021-05-28 19:55:53.896 +05:30 [INF] MV_FOLDER folder is created at F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV_FOLDER by 1
+2021-05-28 19:56:21.802 +05:30 [INF] F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV_FOLDER is deleted by 1
+2021-05-28 19:56:58.160 +05:30 [INF] MV_FOLDER folder is created at F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV_FOLDER by 1
+2021-05-28 19:57:18.051 +05:30 [INF] F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV_FOLDER is deleted by 1
+2021-05-28 19:57:41.686 +05:30 [INF] MV_FOLDER folder is created at F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV_FOLDER by 1
+2021-05-28 19:58:33.255 +05:30 [INF] 1 granted Read: True, Delete: False, Modify: False permission to 2 for 1 folder
+2021-05-28 20:00:33.386 +05:30 [INF] 1 changed Read: True, Delete: False, Modify: False permission to 2 for 1 folder
+2021-05-28 20:20:09.308 +05:30 [INF] MV_FOLDER2 folder is created at F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\2\MV_FOLDER2 by 2
+2021-05-28 20:32:14.377 +05:30 [INF] MV_FOLDER1 folder is created at F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV_FOLDER1 by 1
+2021-05-28 20:36:38.408 +05:30 [INF] F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV_FOLDER1 is deleted by 1
+2021-05-28 20:36:47.369 +05:30 [INF] F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV_FOLDER is deleted by 1
+2021-05-28 20:37:08.106 +05:30 [INF] F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\$1\MV_FOLDER is deleted by 1
+2021-05-28 20:53:06.855 +05:30 [INF] MV_FOLDER1 folder is created at F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV_FOLDER1 by 1

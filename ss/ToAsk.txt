@@ -1,0 +1,1 @@
+I don't have confirm password in web api models so how to manage that in the MVC Register model

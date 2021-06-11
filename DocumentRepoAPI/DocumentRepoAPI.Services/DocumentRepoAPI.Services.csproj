@@ -59,9 +59,9 @@
     <Compile Include="Implementations\DocumentService.cs" />
     <Compile Include="Implementations\EncryptionService.cs" />
     <Compile Include="Implementations\AuthenticationService.cs" />
+    <Compile Include="Interfaces\IDocumentService.cs" />
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Interfaces\IAuthenticationService.cs" />
-    <Compile Include="Interfaces\IDocumentService.cs" />
     <Compile Include="Interfaces\IEncryptionService.cs" />
     <Compile Include="Interfaces\ILoggingService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />

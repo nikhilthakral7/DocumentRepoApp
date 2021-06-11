@@ -1,4 +1,5 @@
-﻿using DocumentRepoAPI.Data.Entities;
+﻿using DocumentRepoAPI.Data.DTO;
+using DocumentRepoAPI.Data.Entities;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using DocumentRepoAPI.Services.Interfaces;
 using DocumentRepoAPI.Data.Validators;
+using DocumentRepoAPI.Data.DTO;
 
 namespace DocumentRepoAPI.Controllers
 {
@@ -24,6 +25,7 @@ namespace DocumentRepoAPI.Controllers
         //Attribute to bypass authorization
         [Route("")]
         [OverrideAuthorization]
+
         [HttpPost]
         public async Task<IHttpActionResult> Login(LoginDTO user)
         {
@@ -37,7 +39,7 @@ namespace DocumentRepoAPI.Controllers
             if (res != null)
             {
                 //shouldn' we return userDTO obj instead of token only,which contain unserId also
-                return Ok(res);
+                return Ok(new { token = res });
             }
             return BadRequest();
         }

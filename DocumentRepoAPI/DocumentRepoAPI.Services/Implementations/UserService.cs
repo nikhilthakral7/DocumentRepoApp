@@ -42,6 +42,9 @@ namespace DocumentRepoAPI.Services.Implementations
                 try
                 {
                     await context.SaveChangesAsync();
+                    //Adding the generated user Id to CreatedBy and ModifiedBy
+                    newUsers.CreatedBy = newUsers.UserId;
+                    newUsers.ModifiedBy = newUsers.UserId;
                     Log.Information("User created successfully!");
                     return newUsers.UserId;
                 }
@@ -91,7 +94,7 @@ namespace DocumentRepoAPI.Services.Implementations
                     entity.LastName = updatedUsers.LastName;
                     entity.RecoveryPhoneNum = updatedUsers.RecoveryPhoneNum;
                     entity.ModifiedBy = updatedUsers.ModifiedBy;
-                    entity.ModifiedDate = updatedUsers.ModifiedDate;
+                    entity.ModifiedDate = DateTime.UtcNow;
 
                     await context.SaveChangesAsync();
                     return entity.UserId;

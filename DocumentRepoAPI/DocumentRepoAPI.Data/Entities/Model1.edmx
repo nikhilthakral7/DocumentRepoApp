@@ -120,6 +120,28 @@
           <Property Name="UserTypeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserType" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <Function Name="SP_GetActiveUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetAllfileschangesOnDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date" Type="datetime2" Mode="In" />
+        </Function>
+        <Function Name="SP_GetAllfolderchangesOnDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date" Type="datetime2" Mode="In" />
+        </Function>
+        <Function Name="SP_GetAllFoldersFilesByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GetFilesWithReadModify" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GetFilesWithReadOrModify" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GetModifiedFoolders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetSharedFilesDTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetSharedFileUserCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GetTotalFilesByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ValidateTokenRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="token" Type="varchar" Mode="In" />
         </Function>
@@ -254,7 +276,7 @@
           <Property Name="UserTypeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="filerepodbEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="filerepodbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EventHistory" EntityType="Self.EventHistory" />
           <EntitySet Name="EventTypes" EntityType="Self.EventTypes" />
           <EntitySet Name="Files" EntityType="Self.Files" />
@@ -264,10 +286,133 @@
           <EntitySet Name="UserActiveTokens" EntityType="Self.UserActiveTokens" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="UserTypes" EntityType="Self.UserTypes" />
+          <FunctionImport Name="SP_GetActiveUsers" ReturnType="Collection(filerepodbModel.SP_GetActiveUsers_Result)" />
+          <FunctionImport Name="SP_GetAllfileschangesOnDate" ReturnType="Collection(filerepodbModel.SP_GetAllfileschangesOnDate_Result)">
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetAllfolderchangesOnDate" ReturnType="Collection(filerepodbModel.SP_GetAllfolderchangesOnDate_Result)">
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetAllFoldersFilesByUser" ReturnType="Collection(filerepodbModel.SP_GetAllFoldersFilesByUser_Result)">
+            <Parameter Name="userId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetFilesWithReadModify" ReturnType="Collection(filerepodbModel.SP_GetFilesWithReadModify_Result)">
+            <Parameter Name="userId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetFilesWithReadOrModify" ReturnType="Collection(filerepodbModel.SP_GetFilesWithReadOrModify_Result)">
+            <Parameter Name="userId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetModifiedFoolders" ReturnType="Collection(filerepodbModel.SP_GetModifiedFoolders_Result)" />
+          <FunctionImport Name="SP_GetSharedFilesDTO" ReturnType="Collection(filerepodbModel.SP_GetSharedFilesDTO_Result)" />
+          <FunctionImport Name="SP_GetSharedFileUserCount" ReturnType="Collection(filerepodbModel.SP_GetSharedFileUserCount_Result)">
+            <Parameter Name="userId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetTotalFilesByUser" ReturnType="Collection(filerepodbModel.SP_GetTotalFilesByUser_Result)" />
           <FunctionImport Name="ValidateTokenRole" ReturnType="Collection(filerepodbModel.ValidateTokenRole_Result)">
             <Parameter Name="token" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="SP_GetActiveUsers_Result">
+          <Property Type="Int64" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="EmailId" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="PasswordHash" Nullable="false" MaxLength="512" />
+          <Property Type="Int32" Name="UserTypeId" Nullable="false" />
+          <Property Type="Boolean" Name="UserActive" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="RecoveryPhoneNum" Nullable="false" MaxLength="50" />
+          <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+          <Property Type="Int64" Name="ModifiedBy" Nullable="false" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllfileschangesOnDate_Result">
+          <Property Type="Int64" Name="FileId" Nullable="false" />
+          <Property Type="Int64" Name="FolderId" Nullable="true" />
+          <Property Type="String" Name="FileName" Nullable="false" />
+          <Property Type="String" Name="FileUrl" Nullable="false" />
+          <Property Type="String" Name="FileType" Nullable="false" />
+          <Property Type="Boolean" Name="ReadAccess" Nullable="false" />
+          <Property Type="Boolean" Name="ModifyAccess" Nullable="false" />
+          <Property Type="Boolean" Name="DeleteAccess" Nullable="false" />
+          <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+          <Property Type="Int64" Name="ModifiedBy" Nullable="false" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllfolderchangesOnDate_Result">
+          <Property Type="DateTime" Name="org_date" Nullable="true" />
+          <Property Type="DateTime" Name="param_date" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllFoldersFilesByUser_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int64" Name="ContainingFolderId" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Url" Nullable="false" />
+          <Property Type="String" Name="Type" Nullable="false" />
+          <Property Type="Boolean" Name="ReadAccess" Nullable="false" />
+          <Property Type="Boolean" Name="ModifyAccess" Nullable="false" />
+          <Property Type="Boolean" Name="DeleteAccess" Nullable="false" />
+          <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+          <Property Type="Int64" Name="ModifiedBy" Nullable="false" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_GetFilesWithReadModify_Result">
+          <Property Type="Int64" Name="SharedFilesId" Nullable="false" />
+          <Property Type="Int64" Name="SharedFile" Nullable="false" />
+          <Property Type="Int64" Name="SharedBy" Nullable="false" />
+          <Property Type="Int64" Name="SharedTo" Nullable="false" />
+          <Property Type="Boolean" Name="ReadAccess" Nullable="false" />
+          <Property Type="Boolean" Name="ModifyAccess" Nullable="false" />
+          <Property Type="Boolean" Name="DeleteAccess" Nullable="false" />
+          <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+          <Property Type="Int64" Name="ModifiedBy" Nullable="false" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_GetFilesWithReadOrModify_Result">
+          <Property Type="Int64" Name="SharedFilesId" Nullable="false" />
+          <Property Type="Int64" Name="SharedFile" Nullable="false" />
+          <Property Type="Int64" Name="SharedBy" Nullable="false" />
+          <Property Type="Int64" Name="SharedTo" Nullable="false" />
+          <Property Type="Boolean" Name="ReadAccess" Nullable="false" />
+          <Property Type="Boolean" Name="ModifyAccess" Nullable="false" />
+          <Property Type="Boolean" Name="DeleteAccess" Nullable="false" />
+          <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+          <Property Type="Int64" Name="ModifiedBy" Nullable="false" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_GetModifiedFoolders_Result">
+          <Property Type="Int64" Name="ParentId" Nullable="true" />
+          <Property Type="Int64" Name="FolderId" Nullable="false" />
+          <Property Type="String" Name="FolderName" Nullable="false" />
+          <Property Type="String" Name="FolderUrl" Nullable="false" />
+          <Property Type="Boolean" Name="ReadAccess" Nullable="false" />
+          <Property Type="Boolean" Name="ModifyAccess" Nullable="false" />
+          <Property Type="Boolean" Name="DeleteAccess" Nullable="false" />
+          <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+          <Property Type="Int64" Name="ModifiedBy" Nullable="false" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_GetSharedFilesDTO_Result">
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="101" />
+          <Property Type="Int64" Name="SharedFile" Nullable="false" />
+          <Property Type="String" Name="ReadPermission" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="DeletePermission" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="ModifyPermission" Nullable="false" MaxLength="3" />
+        </ComplexType>
+        <ComplexType Name="SP_GetSharedFileUserCount_Result">
+          <Property Type="Int64" Name="SharedBy" Nullable="false" />
+          <Property Type="Int32" Name="SharedUserCount" Nullable="true" />
+          <Property Type="Int32" Name="SharefFileCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetTotalFilesByUser_Result">
+          <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+          <Property Type="Int32" Name="TotalFiles" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="ValidateTokenRole_Result">
           <Property Type="Int32" Name="status" Nullable="false" />
           <Property Type="String" Name="message" Nullable="false" MaxLength="11" />
@@ -279,7 +424,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="filerepodbModelStoreContainer" CdmEntityContainer="filerepodbEntities1">
+        <EntityContainerMapping StorageEntityContainer="filerepodbModelStoreContainer" CdmEntityContainer="filerepodbEntities">
           <EntitySetMapping Name="EventHistory">
             <EntityTypeMapping TypeName="filerepodbModel.EventHistory">
               <MappingFragment StoreEntitySet="EventHistory">
@@ -404,6 +549,147 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetActiveUsers" FunctionName="filerepodbModel.Store.SP_GetActiveUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="filerepodbModel.SP_GetActiveUsers_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="UserActive" ColumnName="UserActive" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="RecoveryPhoneNum" ColumnName="RecoveryPhoneNum" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetAllfileschangesOnDate" FunctionName="filerepodbModel.Store.SP_GetAllfileschangesOnDate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="filerepodbModel.SP_GetAllfileschangesOnDate_Result">
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="FolderId" ColumnName="FolderId" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="ReadAccess" ColumnName="ReadAccess" />
+                <ScalarProperty Name="ModifyAccess" ColumnName="ModifyAccess" />
+                <ScalarProperty Name="DeleteAccess" ColumnName="DeleteAccess" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetAllfolderchangesOnDate" FunctionName="filerepodbModel.Store.SP_GetAllfolderchangesOnDate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="filerepodbModel.SP_GetAllfolderchangesOnDate_Result">
+                <ScalarProperty Name="org_date" ColumnName="org_date" />
+                <ScalarProperty Name="param_date" ColumnName="param_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetAllFoldersFilesByUser" FunctionName="filerepodbModel.Store.SP_GetAllFoldersFilesByUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="filerepodbModel.SP_GetAllFoldersFilesByUser_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ContainingFolderId" ColumnName="ContainingFolderId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ReadAccess" ColumnName="ReadAccess" />
+                <ScalarProperty Name="ModifyAccess" ColumnName="ModifyAccess" />
+                <ScalarProperty Name="DeleteAccess" ColumnName="DeleteAccess" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetFilesWithReadModify" FunctionName="filerepodbModel.Store.SP_GetFilesWithReadModify">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="filerepodbModel.SP_GetFilesWithReadModify_Result">
+                <ScalarProperty Name="SharedFilesId" ColumnName="SharedFilesId" />
+                <ScalarProperty Name="SharedFile" ColumnName="SharedFile" />
+                <ScalarProperty Name="SharedBy" ColumnName="SharedBy" />
+                <ScalarProperty Name="SharedTo" ColumnName="SharedTo" />
+                <ScalarProperty Name="ReadAccess" ColumnName="ReadAccess" />
+                <ScalarProperty Name="ModifyAccess" ColumnName="ModifyAccess" />
+                <ScalarProperty Name="DeleteAccess" ColumnName="DeleteAccess" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetFilesWithReadOrModify" FunctionName="filerepodbModel.Store.SP_GetFilesWithReadOrModify">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="filerepodbModel.SP_GetFilesWithReadOrModify_Result">
+                <ScalarProperty Name="SharedFilesId" ColumnName="SharedFilesId" />
+                <ScalarProperty Name="SharedFile" ColumnName="SharedFile" />
+                <ScalarProperty Name="SharedBy" ColumnName="SharedBy" />
+                <ScalarProperty Name="SharedTo" ColumnName="SharedTo" />
+                <ScalarProperty Name="ReadAccess" ColumnName="ReadAccess" />
+                <ScalarProperty Name="ModifyAccess" ColumnName="ModifyAccess" />
+                <ScalarProperty Name="DeleteAccess" ColumnName="DeleteAccess" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetModifiedFoolders" FunctionName="filerepodbModel.Store.SP_GetModifiedFoolders">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="filerepodbModel.SP_GetModifiedFoolders_Result">
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="FolderId" ColumnName="FolderId" />
+                <ScalarProperty Name="FolderName" ColumnName="FolderName" />
+                <ScalarProperty Name="FolderUrl" ColumnName="FolderUrl" />
+                <ScalarProperty Name="ReadAccess" ColumnName="ReadAccess" />
+                <ScalarProperty Name="ModifyAccess" ColumnName="ModifyAccess" />
+                <ScalarProperty Name="DeleteAccess" ColumnName="DeleteAccess" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetSharedFilesDTO" FunctionName="filerepodbModel.Store.SP_GetSharedFilesDTO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="filerepodbModel.SP_GetSharedFilesDTO_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SharedFile" ColumnName="SharedFile" />
+                <ScalarProperty Name="ReadPermission" ColumnName="ReadPermission" />
+                <ScalarProperty Name="DeletePermission" ColumnName="DeletePermission" />
+                <ScalarProperty Name="ModifyPermission" ColumnName="ModifyPermission" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetSharedFileUserCount" FunctionName="filerepodbModel.Store.SP_GetSharedFileUserCount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="filerepodbModel.SP_GetSharedFileUserCount_Result">
+                <ScalarProperty Name="SharedBy" ColumnName="SharedBy" />
+                <ScalarProperty Name="SharedUserCount" ColumnName="SharedUserCount" />
+                <ScalarProperty Name="SharefFileCount" ColumnName="SharefFileCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetTotalFilesByUser" FunctionName="filerepodbModel.Store.SP_GetTotalFilesByUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="filerepodbModel.SP_GetTotalFilesByUser_Result">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="TotalFiles" ColumnName="TotalFiles" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ValidateTokenRole" FunctionName="filerepodbModel.Store.ValidateTokenRole">
             <ResultMapping>
               <ComplexTypeMapping TypeName="filerepodbModel.ValidateTokenRole_Result">

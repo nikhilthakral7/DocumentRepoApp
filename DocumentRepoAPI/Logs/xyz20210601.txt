@@ -1,0 +1,15 @@
+2021-06-01 12:33:07.226 +05:30 [ERR] The directory name is invalid.
+
+2021-06-01 12:33:07.286 +05:30 [ERR]    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound, WIN32_FIND_DATA& data)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at System.IO.Directory.Delete(String path)
+   at DocumentRepoAPI.Services.Implementations.DocumentService.<DeleteFile>d__8.MoveNext() in F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Services\Implementations\DocumentService.cs:line 181
+2021-06-01 12:33:46.827 +05:30 [ERR] The directory name is invalid.
+
+2021-06-01 12:33:46.827 +05:30 [ERR]    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound, WIN32_FIND_DATA& data)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at System.IO.Directory.Delete(String path)
+   at DocumentRepoAPI.Services.Implementations.DocumentService.<DeleteFile>d__8.MoveNext()
+2021-06-01 12:36:41.583 +05:30 [INF] F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV\sql imp topics.txt is deleted by 1

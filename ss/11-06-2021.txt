@@ -1,0 +1,8 @@
+State Management
+-Session management is basicaaly used to send data from controller to view
+we have 4 type 
+-viewbag is dynamic and it handles null values without giving any error. It can hold data for only 1 requests
+-viewdata is a dictionary, and it gives error on null values, So we need to check for null before adding to it. It can hold data for only 1 requests
+-tempdata is also a dictionary, it can pass value from controller-view and controller-controller. It can hold data for subsequest requests. For sustaining data among subsequent requests, we use keep and peek functions
+-session - keeps data till app is running, It gives value when jquery injection is used, therefore we don't use it
+ToDo- Request Behaviout

@@ -1,2 +1,11 @@
-Learn about Route prefix attribute
-How web api work at backend from scratch
+done-- Learn about Route prefix attribute
+- How web api work at backend from scratch
+
+DotNet zip - Lib for data compression
+	Either client, server or both should use compression
+	- Send compressed responses from API
+done-- Change update functanilty
+done--Set datime.utcnow defualt create andd modified date
+done--Change GetFilePermission with gEt Shared file permission by userId
+done--Same with GetFolderPErmission
+done--set modified by while updating directory

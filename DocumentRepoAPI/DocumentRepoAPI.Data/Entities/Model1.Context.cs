@@ -37,6 +37,80 @@ namespace DocumentRepoAPI.Data.Entities
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserTypes> UserTypes { get; set; }
     
+        public virtual ObjectResult<SP_GetActiveUsers_Result> SP_GetActiveUsers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetActiveUsers_Result>("SP_GetActiveUsers");
+        }
+    
+        public virtual ObjectResult<SP_GetAllfileschangesOnDate_Result> SP_GetAllfileschangesOnDate(Nullable<System.DateTime> date)
+        {
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("date", date) :
+                new ObjectParameter("date", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllfileschangesOnDate_Result>("SP_GetAllfileschangesOnDate", dateParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetAllfolderchangesOnDate_Result> SP_GetAllfolderchangesOnDate(Nullable<System.DateTime> date)
+        {
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("date", date) :
+                new ObjectParameter("date", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllfolderchangesOnDate_Result>("SP_GetAllfolderchangesOnDate", dateParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetAllFoldersFilesByUser_Result> SP_GetAllFoldersFilesByUser(Nullable<long> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllFoldersFilesByUser_Result>("SP_GetAllFoldersFilesByUser", userIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetFilesWithReadModify_Result> SP_GetFilesWithReadModify(Nullable<long> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetFilesWithReadModify_Result>("SP_GetFilesWithReadModify", userIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetFilesWithReadOrModify_Result> SP_GetFilesWithReadOrModify(Nullable<long> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetFilesWithReadOrModify_Result>("SP_GetFilesWithReadOrModify", userIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetModifiedFoolders_Result> SP_GetModifiedFoolders()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetModifiedFoolders_Result>("SP_GetModifiedFoolders");
+        }
+    
+        public virtual ObjectResult<SP_GetSharedFilesDTO_Result> SP_GetSharedFilesDTO()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetSharedFilesDTO_Result>("SP_GetSharedFilesDTO");
+        }
+    
+        public virtual ObjectResult<SP_GetSharedFileUserCount_Result> SP_GetSharedFileUserCount(Nullable<long> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetSharedFileUserCount_Result>("SP_GetSharedFileUserCount", userIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetTotalFilesByUser_Result> SP_GetTotalFilesByUser()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetTotalFilesByUser_Result>("SP_GetTotalFilesByUser");
+        }
+    
         public virtual ObjectResult<ValidateTokenRole_Result> ValidateTokenRole(string token)
         {
             var tokenParameter = token != null ?

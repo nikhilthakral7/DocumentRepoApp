@@ -35,6 +35,8 @@ namespace DocumentRepoAPI.Filters
                 actionContext.Response = msg;
                 return;
             }
+
+            //Success, continue procedure
             base.OnActionExecuting(actionContext);
 
         }

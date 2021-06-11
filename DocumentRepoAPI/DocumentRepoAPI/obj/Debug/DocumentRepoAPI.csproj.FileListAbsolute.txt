@@ -103,3 +103,6 @@ F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI\bin\System.Web.Razor
 F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI\bin\System.Web.WebPages.xml
 F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI\bin\System.Web.WebPages.Deployment.xml
 F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI\bin\System.Web.WebPages.Razor.xml
+F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI\bin\DotNetZip.dll
+F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI\bin\DotNetZip.pdb
+F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI\bin\DotNetZip.xml

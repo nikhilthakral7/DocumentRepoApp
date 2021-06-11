@@ -41,6 +41,8 @@ namespace DocumentRepoAPI.Controllers
             return Ok(res);
         }
 
+        [Route("")]
+        [OverrideAuthorization]
         [HttpPost]
         public async Task<IHttpActionResult> Post(Users user)
         {
@@ -53,6 +55,8 @@ namespace DocumentRepoAPI.Controllers
             var res =  await userObj.CreateUsers(user);
             return Ok(res);
         }
+
+        [Route("")]
         [Route("api/user/{id}")]
         [HttpPut]
         public async Task<IHttpActionResult> Put(long id, Users user)

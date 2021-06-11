@@ -1,0 +1,2 @@
+2021-06-03 16:45:03.179 +05:30 [INF] 1 granted Read: True, Delete: False, Modify: True permission to 2 for 10022 file
+2021-06-03 16:45:10.709 +05:30 [INF] 1 granted Read: True, Delete: False, Modify: True permission to 3 for 10022 file

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="filerepodbModelStoreContainer" CdmEntityContainer="filerepodbEntities1">
+  <EntityContainerMapping StorageEntityContainer="filerepodbModelStoreContainer" CdmEntityContainer="filerepodbEntities">
     <EntitySetMapping Name="EventHistory">
       <EntityTypeMapping TypeName="filerepodbModel.EventHistory">
         <MappingFragment StoreEntitySet="EventHistory">
@@ -125,6 +125,147 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetActiveUsers" FunctionName="filerepodbModel.Store.SP_GetActiveUsers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="filerepodbModel.SP_GetActiveUsers_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="UserActive" ColumnName="UserActive" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="RecoveryPhoneNum" ColumnName="RecoveryPhoneNum" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetAllfileschangesOnDate" FunctionName="filerepodbModel.Store.SP_GetAllfileschangesOnDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="filerepodbModel.SP_GetAllfileschangesOnDate_Result">
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="FolderId" ColumnName="FolderId" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+          <ScalarProperty Name="FileType" ColumnName="FileType" />
+          <ScalarProperty Name="ReadAccess" ColumnName="ReadAccess" />
+          <ScalarProperty Name="ModifyAccess" ColumnName="ModifyAccess" />
+          <ScalarProperty Name="DeleteAccess" ColumnName="DeleteAccess" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetAllfolderchangesOnDate" FunctionName="filerepodbModel.Store.SP_GetAllfolderchangesOnDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="filerepodbModel.SP_GetAllfolderchangesOnDate_Result">
+          <ScalarProperty Name="org_date" ColumnName="org_date" />
+          <ScalarProperty Name="param_date" ColumnName="param_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetAllFoldersFilesByUser" FunctionName="filerepodbModel.Store.SP_GetAllFoldersFilesByUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="filerepodbModel.SP_GetAllFoldersFilesByUser_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ContainingFolderId" ColumnName="ContainingFolderId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ReadAccess" ColumnName="ReadAccess" />
+          <ScalarProperty Name="ModifyAccess" ColumnName="ModifyAccess" />
+          <ScalarProperty Name="DeleteAccess" ColumnName="DeleteAccess" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetFilesWithReadModify" FunctionName="filerepodbModel.Store.SP_GetFilesWithReadModify">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="filerepodbModel.SP_GetFilesWithReadModify_Result">
+          <ScalarProperty Name="SharedFilesId" ColumnName="SharedFilesId" />
+          <ScalarProperty Name="SharedFile" ColumnName="SharedFile" />
+          <ScalarProperty Name="SharedBy" ColumnName="SharedBy" />
+          <ScalarProperty Name="SharedTo" ColumnName="SharedTo" />
+          <ScalarProperty Name="ReadAccess" ColumnName="ReadAccess" />
+          <ScalarProperty Name="ModifyAccess" ColumnName="ModifyAccess" />
+          <ScalarProperty Name="DeleteAccess" ColumnName="DeleteAccess" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetFilesWithReadOrModify" FunctionName="filerepodbModel.Store.SP_GetFilesWithReadOrModify">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="filerepodbModel.SP_GetFilesWithReadOrModify_Result">
+          <ScalarProperty Name="SharedFilesId" ColumnName="SharedFilesId" />
+          <ScalarProperty Name="SharedFile" ColumnName="SharedFile" />
+          <ScalarProperty Name="SharedBy" ColumnName="SharedBy" />
+          <ScalarProperty Name="SharedTo" ColumnName="SharedTo" />
+          <ScalarProperty Name="ReadAccess" ColumnName="ReadAccess" />
+          <ScalarProperty Name="ModifyAccess" ColumnName="ModifyAccess" />
+          <ScalarProperty Name="DeleteAccess" ColumnName="DeleteAccess" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetModifiedFoolders" FunctionName="filerepodbModel.Store.SP_GetModifiedFoolders">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="filerepodbModel.SP_GetModifiedFoolders_Result">
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="FolderId" ColumnName="FolderId" />
+          <ScalarProperty Name="FolderName" ColumnName="FolderName" />
+          <ScalarProperty Name="FolderUrl" ColumnName="FolderUrl" />
+          <ScalarProperty Name="ReadAccess" ColumnName="ReadAccess" />
+          <ScalarProperty Name="ModifyAccess" ColumnName="ModifyAccess" />
+          <ScalarProperty Name="DeleteAccess" ColumnName="DeleteAccess" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetSharedFilesDTO" FunctionName="filerepodbModel.Store.SP_GetSharedFilesDTO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="filerepodbModel.SP_GetSharedFilesDTO_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SharedFile" ColumnName="SharedFile" />
+          <ScalarProperty Name="ReadPermission" ColumnName="ReadPermission" />
+          <ScalarProperty Name="DeletePermission" ColumnName="DeletePermission" />
+          <ScalarProperty Name="ModifyPermission" ColumnName="ModifyPermission" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetSharedFileUserCount" FunctionName="filerepodbModel.Store.SP_GetSharedFileUserCount">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="filerepodbModel.SP_GetSharedFileUserCount_Result">
+          <ScalarProperty Name="SharedBy" ColumnName="SharedBy" />
+          <ScalarProperty Name="SharedUserCount" ColumnName="SharedUserCount" />
+          <ScalarProperty Name="SharefFileCount" ColumnName="SharefFileCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetTotalFilesByUser" FunctionName="filerepodbModel.Store.SP_GetTotalFilesByUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="filerepodbModel.SP_GetTotalFilesByUser_Result">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="TotalFiles" ColumnName="TotalFiles" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ValidateTokenRole" FunctionName="filerepodbModel.Store.ValidateTokenRole">
       <ResultMapping>
         <ComplexTypeMapping TypeName="filerepodbModel.ValidateTokenRole_Result">

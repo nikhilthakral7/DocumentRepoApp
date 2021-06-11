@@ -1,0 +1,3 @@
+2021-06-07 13:34:53.351 +05:30 [INF] MV_FOLDER1 folder is created at F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV_FOLDER1 by 1
+2021-06-07 13:35:03.547 +05:30 [INF] MV_FOLDER2 folder is created at F:\\Sessions\\DocumentRepoApp\\DocumentRepoAPI\\Docs\1\MV_FOLDER2 by 1
+2021-06-07 14:39:29.682 +05:30 [INF] 1 granted Read: True, Delete: False, Modify: True permission to 2 for 10025 file

@@ -1,0 +1,5 @@
+F:\Sessions\DocumentRepoApp\DocumentRepoWeb\DocumentRepoWeb.Data\obj\Debug\DocumentRepoWeb.Data.csproj.CoreCompileInputs.cache
+F:\Sessions\DocumentRepoApp\DocumentRepoWeb\DocumentRepoWeb.Data\bin\Debug\DocumentRepoWeb.Data.dll
+F:\Sessions\DocumentRepoApp\DocumentRepoWeb\DocumentRepoWeb.Data\bin\Debug\DocumentRepoWeb.Data.pdb
+F:\Sessions\DocumentRepoApp\DocumentRepoWeb\DocumentRepoWeb.Data\obj\Debug\DocumentRepoWeb.Data.dll
+F:\Sessions\DocumentRepoApp\DocumentRepoWeb\DocumentRepoWeb.Data\obj\Debug\DocumentRepoWeb.Data.pdb

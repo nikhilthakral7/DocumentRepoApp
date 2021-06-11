@@ -47,3 +47,6 @@ F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\Flue
 F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\Serilog.xml
 F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\Serilog.Sinks.File.pdb
 F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\Serilog.Sinks.File.xml
+F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\DotNetZip.dll
+F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\DotNetZip.pdb
+F:\Sessions\DocumentRepoApp\DocumentRepoAPI\DocumentRepoAPI.Tests\bin\Debug\DotNetZip.xml
